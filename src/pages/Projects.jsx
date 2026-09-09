@@ -60,10 +60,10 @@ const projects = [
 ]
 
 const categories = [
-  { value: 'all', label: 'Semua' },
-  { value: 'web', label: 'Web' },
-  { value: 'mobile', label: 'Mobile' },
-  { value: 'design', label: 'Design' },
+  { value: 'all', labelKey: 'projects.all' },
+  { value: 'web', labelKey: 'projects.web' },
+  { value: 'mobile', labelKey: 'projects.mobile' },
+  { value: 'design', labelKey: 'projects.design' },
 ]
 
 export default function Projects() {
@@ -76,36 +76,41 @@ export default function Projects() {
       : projects.filter((p) => p.category === active)
 
   return (
-    <section id="projects" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6">
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-          Proyek <span className="text-blue-600 dark:text-blue-400">Saya</span>
-        </h1>
-        <p className="mt-3 text-gray-600 dark:text-gray-300">
-          {t('projects.subtitle')}
-        </p>
-      </div>
+    <section id="projects" className="relative scroll-mt-20">
+      <div className="mx-auto max-w-[1600px] px-8 py-24 md:px-16 md:py-32">
+        <div className="mb-16 border-t border-[#1A1A1A] pt-8">
+          <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-[#6C6863]">
+            {t('projects.subtitle')}
+          </p>
+          <h2 className="font-serif text-5xl font-bold leading-[0.9] tracking-tight text-[#1A1A1A] md:text-7xl">
+            {t('projects.title')}
+          </h2>
+        </div>
 
-      <div className="mb-10 flex flex-wrap justify-center gap-2">
-        {categories.map((cat) => (
-          <button
-            key={cat.value}
-            onClick={() => setActive(cat.value)}
-            className={`rounded-full px-5 py-2 text-sm font-medium transition ${
-              active === cat.value
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700'
-            }`}
-          >
-            {cat.label}
-          </button>
-        ))}
-      </div>
+        <div className="mb-16 flex flex-wrap gap-6">
+          {categories.map((cat) => (
+            <button
+              key={cat.value}
+              onClick={() => setActive(cat.value)}
+              className={`text-xs font-medium uppercase tracking-[0.25em] transition-colors duration-500 ${
+                active === cat.value
+                  ? 'text-[#D4AF37]'
+                  : 'text-[#6C6863] hover:text-[#1A1A1A]'
+              }`}
+            >
+              {t(cat.labelKey)}
+              {active === cat.value && (
+                <div className="mt-1 h-px bg-[#D4AF37]" />
+              )}
+            </button>
+          ))}
+        </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
+        <div className="grid gap-0 sm:grid-cols-2 lg:grid-cols-3">
+          {filtered.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
       </div>
     </section>
   )

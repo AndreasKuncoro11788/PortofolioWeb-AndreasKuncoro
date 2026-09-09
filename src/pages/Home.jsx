@@ -1,4 +1,4 @@
-import { ArrowRight, Code2, Mail } from 'lucide-react'
+import { ArrowRight, Mail } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { GithubIcon, LinkedinIcon } from '../components/BrandIcons'
 
@@ -13,57 +13,67 @@ export default function Home() {
 
   return (
     <section id="home" className="relative scroll-mt-20 overflow-hidden">
-      <div className="mx-auto flex max-w-6xl flex-col-reverse items-center gap-10 px-4 py-16 sm:px-6 md:flex-row md:py-24">
-        <div className="flex-1 text-center md:text-left">
-          <p className="mb-2 text-lg text-gray-600 dark:text-gray-300">
+      <div className="mx-auto grid min-h-[80vh] max-w-[1600px] grid-cols-1 items-end gap-12 px-8 py-24 md:grid-cols-12 md:px-16 md:py-32">
+        <div className="flex flex-col justify-end md:col-span-7">
+          <div className="mb-6 h-px w-12 bg-[#1A1A1A]" />
+
+          <p className="mb-4 text-xs uppercase tracking-[0.3em] text-[#6C6863]">
             {t('hero.greeting')}
           </p>
-          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
-            {t('hero.name')}
+
+          <h1 className="font-serif text-6xl font-bold leading-[0.9] tracking-tight text-[#1A1A1A] md:text-8xl lg:text-9xl">
+            Andreas
+            <br />
+            Kuncoro
           </h1>
-          <h2 className="mt-2 text-xl font-semibold text-blue-600 dark:text-blue-400 sm:text-2xl">
-            {t('hero.role')}
-          </h2>
-          <p className="mt-4 max-w-lg text-gray-600 dark:text-gray-300">
+
+          <p className="mt-6 max-w-md text-lg leading-relaxed text-[#6C6863]">
             {t('hero.description')}
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4 md:justify-start">
+
+          <div className="mt-10 flex flex-wrap gap-4">
             <a
               href="#projects"
-              className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700"
+              className="group relative inline-flex h-12 items-center overflow-hidden bg-[#1A1A1A] px-8 text-xs font-medium uppercase tracking-[0.2em] text-[#F9F8F6] transition-shadow duration-500 hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
             >
-              {t('hero.ctaProjects')}
-              <ArrowRight className="h-4 w-4" />
+              <span className="absolute inset-0 -translate-x-full bg-[#D4AF37] transition-transform duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:translate-x-0" />
+              <span className="relative z-10 inline-flex items-center gap-2">
+                {t('hero.ctaProjects')}
+                <ArrowRight className="h-4 w-4" />
+              </span>
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition hover:border-gray-500 dark:border-gray-600 dark:text-gray-200"
+              className="inline-flex h-12 items-center border border-[#1A1A1A] px-8 text-xs font-medium uppercase tracking-[0.2em] text-[#1A1A1A] transition-all duration-500 hover:bg-[#1A1A1A] hover:text-[#F9F8F6]"
             >
-              <Mail className="h-4 w-4" />
+              <Mail className="mr-2 h-4 w-4" />
               {t('hero.ctaContact')}
             </a>
           </div>
-          <div className="mt-8 flex justify-center gap-3 md:justify-start">
+
+          <div className="mt-12 flex items-center gap-4">
             {socials.map((s) => (
               <a
                 key={s.href}
                 href={s.href}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-lg p-2 text-gray-500 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                className="text-[#6C6863] transition-colors duration-500 hover:text-[#D4AF37]"
                 aria-label={s.href}
               >
-                <s.icon className="h-6 w-6" />
+                <s.icon className="h-5 w-5" />
               </a>
             ))}
           </div>
         </div>
 
-        <div className="flex-1 flex justify-center">
-          <div className="relative flex h-64 w-64 items-center justify-center rounded-3xl bg-gradient-to-br from-blue-500 to-cyan-400 sm:h-72 sm:w-72">
-            <Code2 className="h-24 w-24 text-white" />
-            <div className="absolute -right-4 -top-4 rounded-2xl bg-white p-3 shadow-lg dark:bg-gray-900 dark:shadow-gray-800">
-              <GithubIcon className="h-8 w-8 text-gray-800 dark:text-white" />
+        <div className="flex items-end justify-start md:col-span-5 md:col-start-8">
+          <div className="relative flex aspect-square w-full max-w-sm items-center justify-center bg-[#1A1A1A] shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
+            <span className="select-none font-serif text-6xl font-bold text-[#F9F8F6]/10 md:text-8xl">
+              AK
+            </span>
+            <div className="absolute -left-3 top-8 hidden border-l border-[#D4AF37]/40 py-8 text-[10px] uppercase tracking-[0.3em] text-[#6C6863] md:block" style={{ writingMode: 'vertical-rl' }}>
+              Editorial / Vol. 01
             </div>
           </div>
         </div>

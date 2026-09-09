@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import ThemeToggle from './ThemeToggle'
 import LanguageToggle from './LanguageToggle'
 
 const NAV_IDS = ['home', 'about', 'projects', 'contact']
@@ -36,10 +35,10 @@ export default function Navbar() {
   }, [])
 
   const linkClass = (id) =>
-    `px-3 py-2 rounded-md text-sm font-medium transition ${
+    `px-3 py-2 text-xs uppercase tracking-[0.25em] font-medium transition-colors duration-500 ${
       active === id
-        ? 'text-blue-600 dark:text-blue-400'
-        : 'text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400'
+        ? 'text-[#D4AF37]'
+        : 'text-[#1A1A1A] hover:text-[#D4AF37]'
     }`
 
   const handleClick = (e, id) => {
@@ -52,15 +51,15 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur dark:border-gray-800 dark:bg-gray-950/80">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+    <header className="sticky top-0 z-40 border-b border-[#1A1A1A]/10 bg-[#F9F8F6]/80 backdrop-blur">
+      <nav className="mx-auto flex max-w-[1600px] items-center justify-between px-8 py-4 md:px-16">
         <a
           href="#home"
           onClick={(e) => handleClick(e, 'home')}
-          className="text-xl font-bold text-gray-900 dark:text-white"
+          className="font-serif text-xl font-bold text-[#1A1A1A]"
         >
-          <span className="text-blue-600 dark:text-blue-400">A</span>ndreas
-          <span className="text-blue-600 dark:text-blue-400">.</span>
+          <span className="text-[#D4AF37]">A</span>ndreas
+          <span className="text-[#D4AF37]">.</span>
         </a>
 
         <div className="hidden items-center gap-1 md:flex">
@@ -76,17 +75,15 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-3 md:flex">
           <LanguageToggle />
-          <ThemeToggle />
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-3 md:hidden">
           <LanguageToggle />
-          <ThemeToggle />
           <button
             onClick={() => setOpen(!open)}
-            className="rounded-lg p-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+            className="p-2 text-[#1A1A1A] transition-colors duration-500 hover:text-[#D4AF37]"
             aria-label="Toggle menu"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -95,7 +92,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-gray-200 bg-white px-4 py-3 dark:border-gray-800 dark:bg-gray-950 md:hidden">
+        <div className="border-t border-[#1A1A1A]/10 bg-[#F9F8F6] px-8 py-4 md:hidden">
           <div className="flex flex-col gap-1">
             {links.map((link) => (
               <a

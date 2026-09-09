@@ -1,6 +1,5 @@
 import { ArrowRight, Code2, Mail } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { GithubIcon, LinkedinIcon } from '../components/BrandIcons'
 
 export default function Home() {
@@ -13,7 +12,7 @@ export default function Home() {
   ]
 
   return (
-    <section className="relative overflow-hidden">
+    <section id="home" className="relative scroll-mt-20 overflow-hidden">
       <div className="mx-auto flex max-w-6xl flex-col-reverse items-center gap-10 px-4 py-16 sm:px-6 md:flex-row md:py-24">
         <div className="flex-1 text-center md:text-left">
           <p className="mb-2 text-lg text-gray-600 dark:text-gray-300">
@@ -29,20 +28,20 @@ export default function Home() {
             {t('hero.description')}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4 md:justify-start">
-            <Link
-              to="/projects"
+            <a
+              href="#projects"
               className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700"
             >
               {t('hero.ctaProjects')}
               <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/contact"
+            </a>
+            <a
+              href="#contact"
               className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition hover:border-gray-500 dark:border-gray-600 dark:text-gray-200"
             >
               <Mail className="h-4 w-4" />
               {t('hero.ctaContact')}
-            </Link>
+            </a>
           </div>
           <div className="mt-8 flex justify-center gap-3 md:justify-start">
             {socials.map((s) => (

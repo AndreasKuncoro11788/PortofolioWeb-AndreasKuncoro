@@ -1,40 +1,78 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { NavLink } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 import LanguageToggle from './LanguageToggle'
+
+const NAV_IDS = ['home', 'about', 'projects', 'contact']
 
 export default function Navbar() {
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
+  const [active, setActive] = useState('home')
 
   const links = [
-    { to: '/', label: t('nav.home') },
-    { to: '/about', label: t('nav.about') },
-    { to: '/projects', label: t('nav.projects') },
-    { to: '/contact', label: t('nav.contact') },
+    { id: 'home', label: t('nav.home') },
+    { id: 'about', label: t('nav.about') },
+    { id: 'projects', label: t('nav.projects') },
+    { id: 'contact', label: t('nav.contact') },
   ]
 
-  const linkClass = ({ isActive }) =>
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY + 100
+      let current = NAV_IDS[0]
+      for (const id of NAV_IDS) {
+        const el = document.getElementById(id)
+        if (el && el.offsetTop <= offset) {
+          current = id
+        }
+      }
+      setActive(current)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const linkClass = (id) =>
     `px-3 py-2 rounded-md text-sm font-medium transition ${
-      isActive
+      active === id
         ? 'text-blue-600 dark:text-blue-400'
         : 'text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400'
     }`
 
+  const handleClick = (e, id) => {
+    e.preventDefault()
+    const el = document.getElementById(id)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' })
+    }
+    setOpen(false)
+  }
+
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur dark:border-gray-800 dark:bg-gray-950/80">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <NavLink to="/" className="text-xl font-bold text-gray-900 dark:text-white">
-          <span className="text-blue-600 dark:text-blue-400">A</span>ndreas<span className="text-blue-600 dark:text-blue-400">.</span>
-        </NavLink>
+        <a
+          href="#home"
+          onClick={(e) => handleClick(e, 'home')}
+          className="text-xl font-bold text-gray-900 dark:text-white"
+        >
+          <span className="text-blue-600 dark:text-blue-400">A</span>ndreas
+          <span className="text-blue-600 dark:text-blue-400">.</span>
+        </a>
 
         <div className="hidden items-center gap-1 md:flex">
           {links.map((link) => (
-            <NavLink key={link.to} to={link.to} className={linkClass} end={link.to === '/'}>
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={(e) => handleClick(e, link.id)}
+              className={linkClass(link.id)}
+            >
               {link.label}
-            </NavLink>
+            </a>
           ))}
         </div>
 
@@ -60,15 +98,14 @@ export default function Navbar() {
         <div className="border-t border-gray-200 bg-white px-4 py-3 dark:border-gray-800 dark:bg-gray-950 md:hidden">
           <div className="flex flex-col gap-1">
             {links.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                end={link.to === '/'}
-                onClick={() => setOpen(false)}
-                className={linkClass}
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={(e) => handleClick(e, link.id)}
+                className={linkClass(link.id)}
               >
                 {link.label}
-              </NavLink>
+              </a>
             ))}
           </div>
         </div>

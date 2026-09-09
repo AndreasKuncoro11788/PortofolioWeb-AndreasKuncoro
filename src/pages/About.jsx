@@ -12,7 +12,7 @@ export default function About() {
   ]
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <section id="about" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6">
       <div className="mb-12 text-center">
         <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
           Tentang <span className="text-blue-600 dark:text-blue-400">Saya</span>

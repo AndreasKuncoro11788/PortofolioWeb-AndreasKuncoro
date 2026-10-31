@@ -64,11 +64,11 @@ export default function Projects() {
   return (
     <section id="projects" className="relative scroll-mt-20">
       <div className="mx-auto max-w-[1600px] px-8 py-24 md:px-16 md:py-32">
-        <div className="mb-16 border-t border-[#1A1A1A] pt-8">
-          <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-[#6C6863]">
+        <div className="mb-16 border-t border-black pt-8">
+          <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-[#6B7280]">
             {t('projects.subtitle')}
           </p>
-          <h2 className="font-serif text-5xl font-bold leading-[0.9] tracking-tight text-[#1A1A1A] md:text-7xl">
+          <h2 className="font-serif text-5xl font-bold leading-[0.9] tracking-tight text-black md:text-7xl">
             {t('projects.title')}
           </h2>
         </div>
@@ -80,13 +80,13 @@ export default function Projects() {
               onClick={() => setActive(cat.value)}
               className={`text-xs font-medium uppercase tracking-[0.25em] transition-colors duration-500 ${
                 active === cat.value
-                  ? 'text-[#D4AF37]'
-                  : 'text-[#6C6863] hover:text-[#1A1A1A]'
+                  ? 'text-[#004BBC]'
+                  : 'text-[#6B7280] hover:text-black'
               }`}
             >
               {t(cat.labelKey)}
               {active === cat.value && (
-                <div className="mt-1 h-px bg-[#D4AF37]" />
+                <div className="mt-1 h-px bg-[#004BBC]" />
               )}
             </button>
           ))}

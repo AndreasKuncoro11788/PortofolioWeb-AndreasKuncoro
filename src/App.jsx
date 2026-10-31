@@ -9,7 +9,7 @@ import Projects from './pages/Projects'
 
 function App() {
   return (
-    <div className="relative min-h-screen bg-[#F9F8F6] text-[#1A1A1A]">
+    <div className="relative min-h-screen bg-[#FFFFFF] text-[#000000]">
       <div className="noise-overlay" />
 
       <div className="gridline" style={{ left: '8.333%' }} />

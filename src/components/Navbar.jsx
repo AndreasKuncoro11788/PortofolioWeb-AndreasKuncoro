@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import LanguageToggle from './LanguageToggle'
 
 const NAV_IDS = ['home', 'about', 'education', 'projects', 'organization', 'contact']
 
@@ -39,8 +38,8 @@ export default function Navbar() {
   const linkClass = (id) =>
     `px-3 py-2 text-xs uppercase tracking-[0.25em] font-medium transition-colors duration-500 ${
       active === id
-        ? 'text-[#D4AF37]'
-        : 'text-[#1A1A1A] hover:text-[#D4AF37]'
+        ? 'text-[#004BBC]'
+        : 'text-black hover:text-[#004BBC]'
     }`
 
   const handleClick = (e, id) => {
@@ -53,15 +52,18 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[#1A1A1A]/10 bg-[#F9F8F6]/80 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-black/10 bg-white/90 backdrop-blur">
       <nav className="mx-auto flex max-w-[1600px] items-center justify-between px-8 py-4 md:px-16">
         <a
           href="#home"
           onClick={(e) => handleClick(e, 'home')}
-          className="font-serif text-xl font-bold text-[#1A1A1A]"
+          className="flex items-center gap-3"
         >
-          <span className="text-[#D4AF37]">A</span>ndreas
-          <span className="text-[#D4AF37]">.</span>
+          <img src="/logo.png" alt="Logo Andreas Kuncoro" className="h-8 w-8 object-contain" />
+          <span className="font-serif text-xl font-bold text-black">
+            <span className="text-[#004BBC]">A</span>ndreas
+            <span className="text-[#004BBC]">.</span>
+          </span>
         </a>
 
         <div className="hidden items-center gap-1 md:flex">
@@ -77,15 +79,10 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <LanguageToggle />
-        </div>
-
         <div className="flex items-center gap-3 md:hidden">
-          <LanguageToggle />
           <button
             onClick={() => setOpen(!open)}
-            className="p-2 text-[#1A1A1A] transition-colors duration-500 hover:text-[#D4AF37]"
+            className="p-2 text-black transition-colors duration-500 hover:text-[#004BBC]"
             aria-label="Toggle menu"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -94,7 +91,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-[#1A1A1A]/10 bg-[#F9F8F6] px-8 py-4 md:hidden">
+        <div className="border-t border-black/10 bg-white px-8 py-4 md:hidden">
           <div className="flex flex-col gap-1">
             {links.map((link) => (
               <a

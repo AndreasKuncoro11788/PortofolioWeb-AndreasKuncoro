@@ -10,7 +10,7 @@ export default {
   hero: {
     greeting: 'Halo, saya',
     name: 'Andreas Kuncoro',
-    role: 'Lulusan Informatika — Pengembangan Perangkat Lunak, Analisis Sistem & UI/UX',
+    role: 'Lulusan S1 Informatika — Pengembangan Perangkat Lunak, Analisis Sistem & UI/UX',
     description:
       'Lulusan Informatika dengan pengalaman langsung dalam pengembangan aplikasi web dan mobile, analisis sistem, serta desain UI/UX.',
     ctaProjects: 'Lihat Proyek',
@@ -18,7 +18,7 @@ export default {
   },
   about: {
     title: 'Tentang Saya',
-    subHeading: 'Lulusan Informatika',
+    subHeading: 'Lulusan S1 Informatika',
     p1: 'Sarjana Informatika dengan pengalaman praktis dalam pengembangan aplikasi web dan mobile, analisis sistem, serta desain UI/UX. Berpengalaman mengembangkan sistem informasi dan proyek perangkat lunak menggunakan Laravel, React, Flutter, dan MySQL, dengan pemahaman kuat tentang analisis kebutuhan, desain database, dan pengujian perangkat lunak.',
     p2: 'Terampil menerjemahkan kebutuhan bisnis dan pengguna menjadi sistem yang fungsional serta antarmuka yang berpusat pada pengguna. Tertarik pada pengembangan perangkat lunak, analisis sistem, dan UI/UX, dengan kemampuan pemecahan masalah dan kolaborasi yang baik.',
     skillsTitle: 'Keterampilan & Teknologi',

@@ -40,11 +40,11 @@ export default function Contact() {
       <div className="mx-auto max-w-[1600px] px-8 py-24 md:px-16 md:py-32">
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <div className="mb-16 border-t border-[#1A1A1A] pt-8">
-              <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-[#6C6863]">
+            <div className="mb-16 border-t border-black pt-8">
+              <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-[#6B7280]">
                 {t('contact.subtitle')}
               </p>
-              <h2 className="font-serif text-5xl font-bold leading-[0.9] tracking-tight text-[#1A1A1A] md:text-7xl">
+              <h2 className="font-serif text-5xl font-bold leading-[0.9] tracking-tight text-black md:text-7xl">
                 {t('contact.title')}
               </h2>
             </div>
@@ -55,18 +55,18 @@ export default function Contact() {
               {contactInfo.map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-center gap-6 border-t border-[#1A1A1A]/10 py-8 transition-all duration-500 hover:border-[#D4AF37] hover:pl-4"
+                  className="flex items-center gap-6 border-t border-black/10 py-8 transition-all duration-500 hover:border-[#004BBC] hover:pl-4"
                 >
-                  <item.icon className="h-5 w-5 flex-shrink-0 text-[#6C6863]" />
+                  <item.icon className="h-5 w-5 flex-shrink-0 text-[#6B7280]" />
                   <div className="min-w-0">
-                    <p className="mb-1 text-[10px] uppercase tracking-[0.3em] text-[#6C6863]">
+                    <p className="mb-1 text-[10px] uppercase tracking-[0.3em] text-[#6B7280]">
                       {item.label}
                     </p>
                     <a
                       href={item.href}
                       target={item.external ? '_blank' : undefined}
                       rel={item.external ? 'noreferrer' : undefined}
-                      className="inline-flex max-w-full items-center gap-2 font-serif text-lg text-[#1A1A1A] transition-colors duration-500 hover:text-[#D4AF37]"
+                      className="inline-flex max-w-full items-center gap-2 font-serif text-lg text-black transition-colors duration-500 hover:text-[#004BBC]"
                     >
                       <span className="min-w-0 break-words">{item.value}</span>
                       {item.external && <ExternalLink className="h-3.5 w-3.5 flex-shrink-0" />}

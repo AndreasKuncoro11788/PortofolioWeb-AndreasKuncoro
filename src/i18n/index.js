@@ -5,13 +5,12 @@ import id from './locales/id'
 import en from './locales/en'
 
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
       id: { translation: id },
-      en: { translation: en },
     },
+    lng: 'id',
     fallbackLng: 'id',
     interpolation: {
       escapeValue: false,

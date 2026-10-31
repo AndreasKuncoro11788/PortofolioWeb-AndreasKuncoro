@@ -1,17 +1,31 @@
-import { Download, Mail } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { GithubIcon, GitlabIcon } from '../components/BrandIcons'
+import { GithubIcon } from '../components/BrandIcons'
 
 export default function About() {
   const { t } = useTranslation()
 
-  const skills = [
-    { name: 'React', level: '90%' },
-    { name: 'JavaScript', level: '85%' },
-    { name: 'TypeScript', level: '75%' },
-    { name: 'Tailwind CSS', level: '90%' },
-    { name: 'Node.js', level: '70%' },
-    { name: 'UI/UX Design', level: '80%' },
+  const skillCategories = [
+    {
+      key: 'core',
+      label: t('about.skillCategories.core'),
+      items: t('skills.core', { returnObjects: true }),
+    },
+    {
+      key: 'programming',
+      label: t('about.skillCategories.programming'),
+      items: t('skills.programming', { returnObjects: true }),
+    },
+    {
+      key: 'tools',
+      label: t('about.skillCategories.tools'),
+      items: t('skills.tools', { returnObjects: true }),
+    },
+    {
+      key: 'practices',
+      label: t('about.skillCategories.practices'),
+      items: t('skills.practices', { returnObjects: true }),
+    },
   ]
 
   const experiences = [
@@ -34,7 +48,7 @@ export default function About() {
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <h3 className="mb-6 font-serif text-2xl font-bold text-[#1A1A1A]">
-              Frontend Developer
+              {t('about.subHeading')}
             </h3>
 
             <div className="space-y-6 text-base leading-relaxed text-[#6C6863]">
@@ -69,71 +83,46 @@ export default function About() {
               </div>
             </div>
 
-            <div className="mt-12 flex flex-wrap items-center gap-6">
-              <button
-                type="button"
-                className="group relative inline-flex h-12 items-center overflow-hidden bg-[#1A1A1A] px-8 text-xs font-medium uppercase tracking-[0.2em] text-[#F9F8F6] transition-shadow duration-500 hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
-                onClick={() =>
-                  window.open('/CV-AndreasKuncoro.pdf', '_blank')
-                }
+            <div className="mt-12 flex items-center gap-4">
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                className="text-[#6C6863] transition-colors duration-500 hover:text-[#D4AF37]"
               >
-                <span className="absolute inset-0 -translate-x-full bg-[#D4AF37] transition-transform duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:translate-x-0" />
-                <span className="relative z-10 inline-flex items-center gap-2">
-                  <Download className="h-4 w-4" />
-                  {t('about.downloadCV')}
-                </span>
-              </button>
-              <div className="flex items-center gap-4">
-                <a
-                  href="https://github.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="GitHub"
-                  className="text-[#6C6863] transition-colors duration-500 hover:text-[#D4AF37]"
-                >
-                  <GithubIcon className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://gitlab.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="GitLab"
-                  className="text-[#6C6863] transition-colors duration-500 hover:text-[#D4AF37]"
-                >
-                  <GitlabIcon className="h-5 w-5" />
-                </a>
-                <a
-                  href="mailto:andreas@email.com"
-                  aria-label="Email"
-                  className="text-[#6C6863] transition-colors duration-500 hover:text-[#D4AF37]"
-                >
-                  <Mail className="h-5 w-5" />
-                </a>
-              </div>
+                <GithubIcon className="h-5 w-5" />
+              </a>
+              <a
+                href="mailto:andreaskuncoroadinugroho@gmail.com"
+                aria-label="Email"
+                className="text-[#6C6863] transition-colors duration-500 hover:text-[#D4AF37]"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
             </div>
           </div>
 
           <div className="lg:col-span-4 lg:col-start-9">
             <div className="mb-2 h-px w-8 bg-[#D4AF37]" />
-            <h3 className="mb-8 text-xs uppercase tracking-[0.25em] text-[#6C6863]">
+            <h3 className="mb-10 text-xs uppercase tracking-[0.25em] text-[#6C6863]">
               {t('about.skillsTitle')}
             </h3>
-            <div className="space-y-6">
-              {skills.map((skill) => (
-                <div key={skill.name}>
-                  <div className="mb-2 flex items-baseline justify-between">
-                    <span className="text-xs uppercase tracking-[0.2em] text-[#1A1A1A]">
-                      {skill.name}
-                    </span>
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#6C6863]">
-                      {skill.level}
-                    </span>
-                  </div>
-                  <div className="h-px w-full bg-[#1A1A1A]/10">
-                    <div
-                      className="h-px bg-[#D4AF37]"
-                      style={{ width: skill.level }}
-                    />
+            <div className="space-y-9">
+              {skillCategories.map((cat) => (
+                <div key={cat.key}>
+                  <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.25em] text-[#D4AF37]">
+                    {cat.label}
+                  </p>
+                  <div className="flex flex-wrap gap-x-5 gap-y-2">
+                    {cat.items.map((item) => (
+                      <span
+                        key={item}
+                        className="text-[11px] uppercase tracking-[0.15em] text-[#1A1A1A]"
+                      >
+                        {item}
+                      </span>
+                    ))}
                   </div>
                 </div>
               ))}

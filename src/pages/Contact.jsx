@@ -8,27 +8,27 @@ export default function Contact() {
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'andreas@email.com',
-      href: 'mailto:andreas@email.com',
+      label: t('contact.email'),
+      value: 'andreaskuncoroadinugroho@gmail.com',
+      href: 'mailto:andreaskuncoroadinugroho@gmail.com',
     },
     {
       icon: Phone,
       label: t('contact.whatsapp'),
-      value: '+62 812 3456 7890',
-      href: 'https://wa.me/6281234567890',
+      value: '+62 1384 752 007',
+      href: 'https://wa.me/621384752007',
       external: true,
     },
     {
       icon: LinkedinIcon,
-      label: 'LinkedIn',
+      label: t('contact.linkedin'),
       value: 'linkedin.com/in/andreas',
       href: 'https://linkedin.com/in/andreas',
       external: true,
     },
     {
       icon: InstagramIcon,
-      label: 'Instagram',
+      label: t('contact.instagram'),
       value: '@andreas',
       href: 'https://instagram.com/andreas',
       external: true,
@@ -58,7 +58,7 @@ export default function Contact() {
                   className="flex items-center gap-6 border-t border-[#1A1A1A]/10 py-8 transition-all duration-500 hover:border-[#D4AF37] hover:pl-4"
                 >
                   <item.icon className="h-5 w-5 flex-shrink-0 text-[#6C6863]" />
-                  <div>
+                  <div className="min-w-0">
                     <p className="mb-1 text-[10px] uppercase tracking-[0.3em] text-[#6C6863]">
                       {item.label}
                     </p>
@@ -66,10 +66,10 @@ export default function Contact() {
                       href={item.href}
                       target={item.external ? '_blank' : undefined}
                       rel={item.external ? 'noreferrer' : undefined}
-                      className="inline-flex items-center gap-2 font-serif text-lg text-[#1A1A1A] transition-colors duration-500 hover:text-[#D4AF37]"
+                      className="inline-flex max-w-full items-center gap-2 font-serif text-lg text-[#1A1A1A] transition-colors duration-500 hover:text-[#D4AF37]"
                     >
-                      {item.value}
-                      {item.external && <ExternalLink className="h-3.5 w-3.5" />}
+                      <span className="min-w-0 break-words">{item.value}</span>
+                      {item.external && <ExternalLink className="h-3.5 w-3.5 flex-shrink-0" />}
                     </a>
                   </div>
                 </div>

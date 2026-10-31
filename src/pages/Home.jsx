@@ -6,9 +6,9 @@ export default function Home() {
   const { t } = useTranslation()
 
   const socials = [
-    { icon: GithubIcon, href: 'https://github.com/' },
-    { icon: LinkedinIcon, href: 'https://linkedin.com/' },
-    { icon: Mail, href: 'mailto:andreas@email.com' },
+    { icon: GithubIcon, href: 'https://github.com/', label: 'GitHub' },
+    { icon: LinkedinIcon, href: 'https://linkedin.com/', label: 'LinkedIn' },
+    { icon: Mail, href: 'mailto:andreaskuncoroadinugroho@gmail.com', label: 'Email' },
   ]
 
   return (
@@ -27,7 +27,11 @@ export default function Home() {
             Kuncoro
           </h1>
 
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-[#6C6863]">
+          <p className="mt-6 max-w-md text-lg font-medium leading-relaxed text-[#D4AF37]">
+            {t('hero.role')}
+          </p>
+
+          <p className="mt-4 max-w-md text-lg leading-relaxed text-[#6C6863]">
             {t('hero.description')}
           </p>
 
@@ -59,7 +63,7 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer"
                 className="text-[#6C6863] transition-colors duration-500 hover:text-[#D4AF37]"
-                aria-label={s.href}
+                aria-label={s.label}
               >
                 <s.icon className="h-5 w-5" />
               </a>

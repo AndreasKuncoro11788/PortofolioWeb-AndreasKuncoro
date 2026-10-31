@@ -3,7 +3,7 @@ import { Menu, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import LanguageToggle from './LanguageToggle'
 
-const NAV_IDS = ['home', 'about', 'projects', 'contact']
+const NAV_IDS = ['home', 'about', 'education', 'projects', 'organization', 'contact']
 
 export default function Navbar() {
   const { t } = useTranslation()
@@ -13,7 +13,9 @@ export default function Navbar() {
   const links = [
     { id: 'home', label: t('nav.home') },
     { id: 'about', label: t('nav.about') },
+    { id: 'education', label: t('nav.education') },
     { id: 'projects', label: t('nav.projects') },
+    { id: 'organization', label: t('nav.organization') },
     { id: 'contact', label: t('nav.contact') },
   ]
 

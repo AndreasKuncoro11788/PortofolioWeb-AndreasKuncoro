@@ -5,55 +5,41 @@ import ProjectCard from '../components/ProjectCard'
 const projects = [
   {
     id: 1,
-    title: 'E-Commerce Website',
+    title: 'Integrated Waste Bank Information System',
+    meta: 'Thesis Project · 2026 · System Developer',
     description:
-      'Aplikasi e-commerce lengkap dengan keranjang belanja, pembayaran, dan dashboard admin.',
-    tags: ['React', 'Node.js', 'Tailwind'],
+      'Web-based information system for waste bank management in Yogyakarta City, covering waste transaction management, pickup scheduling, reporting, user management, and monitoring.',
+    tags: ['Laravel', 'React', 'Tailwind CSS', 'MySQL'],
     category: 'web',
     links: { demo: '#', code: 'https://github.com/' },
   },
   {
     id: 2,
-    title: 'Weather App',
+    title: 'Company Profile Website — Briquette Company',
+    meta: 'Personal Project · 2026 · Web Developer',
     description:
-      'Aplikasi cuaca real-time dengan tampilan yang bersih dan responsif.',
-    tags: ['React', 'API', 'CSS'],
+      'Responsive company profile website built to showcase the company\'s products, business information, and professional digital presence.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
     category: 'web',
     links: { demo: '#', code: 'https://github.com/' },
   },
   {
     id: 3,
-    title: 'Portfolio Template',
+    title: 'ReuseMart — E-Commerce Platform',
+    meta: 'Academic Project · 2025 · Software Development Team',
     description:
-      'Template portofolio modern dan dapat disesuaikan sesuai kebutuhan.',
-    tags: ['React', 'Tailwind', 'Vite'],
-    category: 'web',
-    links: { demo: '#', code: 'https://github.com/' },
-  },
-  {
-    id: 4,
-    title: 'Task Manager Mobile',
-    description:
-      'Aplikasi manajemen tugas untuk mobile dengan sinkronisasi cloud.',
-    tags: ['React Native', 'Firebase'],
+      'E-commerce platform with website and mobile application. Developed the merchandise transaction feature end-to-end using Dart and Flutter.',
+    tags: ['Dart', 'Flutter'],
     category: 'mobile',
     links: { demo: '#', code: 'https://github.com/' },
   },
   {
-    id: 5,
-    title: 'Landing Page',
+    id: 4,
+    title: 'Episentrum — Design Thinking Project',
+    meta: 'Academic Project · 2023 · UI/UX Designer',
     description:
-      'Landing page high-converting untuk produk digital dengan animasi halus.',
-    tags: ['React', 'Framer Motion', 'Tailwind'],
-    category: 'web',
-    links: { demo: '#', code: 'https://github.com/' },
-  },
-  {
-    id: 6,
-    title: 'Design System',
-    description:
-      'Sistem desain komponen UI yang reusable dan konsisten untuk tim.',
-    tags: ['Figma', 'React', 'Storybook'],
+      'High-fidelity prototype for the Episentrum application, designed with a user-oriented approach grounded in UI/UX principles.',
+    tags: ['UI/UX Design'],
     category: 'design',
     links: { demo: '#', code: 'https://github.com/' },
   },

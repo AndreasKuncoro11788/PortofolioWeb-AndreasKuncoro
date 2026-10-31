@@ -1,7 +1,10 @@
 import { ExternalLink, Folder } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { GithubIcon } from './BrandIcons'
 
 export default function ProjectCard({ project }) {
+  const { t } = useTranslation()
+
   return (
     <div className="group flex flex-col border-t border-[#1A1A1A]">
       <div className="relative flex aspect-[4/5] items-center justify-center bg-gradient-to-br from-[#EBE5DE] to-[#F9F8F6] grayscale transition-all duration-[1500ms] group-hover:grayscale-0">
@@ -12,7 +15,7 @@ export default function ProjectCard({ project }) {
             target="_blank"
             rel="noreferrer"
             className="absolute right-4 top-4 border border-[#1A1A1A]/10 bg-[#F9F8F6]/90 p-2 text-[#1A1A1A] transition-all duration-500 hover:border-[#D4AF37] hover:text-[#D4AF37]"
-            aria-label="Demo"
+            aria-label={t('projects.viewDemo')}
           >
             <ExternalLink className="h-4 w-4" />
           </a>
@@ -20,6 +23,11 @@ export default function ProjectCard({ project }) {
       </div>
 
       <div className="flex flex-1 flex-col p-8">
+        {project.meta && (
+          <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.25em] text-[#D4AF37]">
+            {project.meta}
+          </p>
+        )}
         <h3 className="font-serif text-xl font-bold text-[#1A1A1A]">
           {project.title}
         </h3>
@@ -47,7 +55,7 @@ export default function ProjectCard({ project }) {
               className="inline-flex items-center gap-2 border border-[#1A1A1A]/20 px-4 py-2 text-[10px] font-medium uppercase tracking-[0.2em] text-[#1A1A1A] transition-all duration-500 hover:border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F9F8F6]"
             >
               <GithubIcon className="h-3.5 w-3.5" />
-              Code
+              {t('projects.viewCode')}
             </a>
           )}
         </div>

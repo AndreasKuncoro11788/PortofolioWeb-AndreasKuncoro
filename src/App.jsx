@@ -2,7 +2,9 @@ import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Education from './pages/Education'
 import Home from './pages/Home'
+import Organization from './pages/Organization'
 import Projects from './pages/Projects'
 
 function App() {
@@ -19,7 +21,9 @@ function App() {
       <main className="relative z-10">
         <Home />
         <About />
+        <Education />
         <Projects />
+        <Organization />
         <Contact />
       </main>
       <Footer />

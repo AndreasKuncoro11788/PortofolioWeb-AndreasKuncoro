@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 export default function Education() {
   const { t } = useTranslation()
 
-  const coursework = t('education.coursework', { returnObjects: true })
+  const focus = t('education.focus', { returnObjects: true })
 
   return (
     <section id="education" className="relative scroll-mt-20">
@@ -35,15 +35,15 @@ export default function Education() {
           <div className="lg:col-span-6 lg:col-start-7">
             <div className="mb-2 h-px w-8 bg-[#004BBC]" />
             <h3 className="mb-8 text-xs uppercase tracking-[0.25em] text-[#6B7280]">
-              {t('education.courseworkTitle')}
+              {t('education.focusTitle')}
             </h3>
             <div className="flex flex-wrap gap-x-5 gap-y-3">
-              {coursework.map((course) => (
+              {focus.map((item) => (
                 <span
-                  key={course}
+                  key={item}
                   className="text-[11px] uppercase tracking-[0.15em] text-black"
                 >
-                  {course}
+                  {item}
                 </span>
               ))}
             </div>

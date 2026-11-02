@@ -1,6 +1,6 @@
-import { ExternalLink, Mail, Phone } from 'lucide-react'
+import { ExternalLink, Mail } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { InstagramIcon, LinkedinIcon } from '../components/BrandIcons'
+import { GithubIcon, LinkedinIcon, WhatsappIcon } from '../components/BrandIcons'
 
 export default function Contact() {
   const { t } = useTranslation()
@@ -13,24 +13,24 @@ export default function Contact() {
       href: 'mailto:andreaskuncoroadinugroho@gmail.com',
     },
     {
-      icon: Phone,
+      icon: WhatsappIcon,
       label: t('contact.whatsapp'),
-      value: '+62 1384 752 007',
+      value: '+62 138 4752 007',
       href: 'https://wa.me/621384752007',
       external: true,
     },
     {
       icon: LinkedinIcon,
       label: t('contact.linkedin'),
-      value: 'linkedin.com/in/andreas',
-      href: 'https://linkedin.com/in/andreas',
+      value: 'linkedin.com/in/andreas-kuncoro-adi-nugroho-6022552a2',
+      href: 'https://www.linkedin.com/in/andreas-kuncoro-adi-nugroho-6022552a2',
       external: true,
     },
     {
-      icon: InstagramIcon,
-      label: t('contact.instagram'),
-      value: '@andreas',
-      href: 'https://instagram.com/andreas',
+      icon: GithubIcon,
+      label: t('contact.github'),
+      value: 'github.com/AndreasKuncoro11788',
+      href: 'https://github.com/AndreasKuncoro11788',
       external: true,
     },
   ]

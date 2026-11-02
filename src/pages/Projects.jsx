@@ -5,43 +5,53 @@ import ProjectCard from '../components/ProjectCard'
 const projects = [
   {
     id: 1,
-    title: 'Integrated Waste Bank Information System',
-    meta: 'Thesis Project · 2026 · System Developer',
+    title: 'Sistem Informasi Bank Sampah Terintegrasi',
+    meta: 'Tugas Akhir · 2026',
     description:
-      'Web-based information system for waste bank management in Yogyakarta City, covering waste transaction management, pickup scheduling, reporting, user management, and monitoring.',
+      'Sistem informasi berbasis web terintegrasi untuk pengelolaan bank sampah di Kota Yogyakarta.',
     tags: ['Laravel', 'React', 'Tailwind CSS', 'MySQL'],
     category: 'web',
-    links: { demo: '#', code: 'https://github.com/' },
+    featured: true,
+    achievements: [
+      { value: '104', label: 'Skenario pengujian berhasil' },
+      { value: '27', label: 'Responden usability' },
+      { value: '76,4', label: 'Skor SUS' },
+    ],
+    features: [
+      'Transaksi Sampah',
+      'Penjadwalan Pengambilan',
+      'Pelaporan',
+      'Manajemen Pengguna',
+      'Monitoring',
+    ],
+    links: { demo: null, code: null },
   },
   {
     id: 2,
-    title: 'Company Profile Website — Briquette Company',
-    meta: 'Personal Project · 2026 · Web Developer',
+    title: 'ReuseMart – Platform E-Commerce',
+    meta: 'Proyek Akademik · 2025',
     description:
-      'Responsive company profile website built to showcase the company\'s products, business information, and professional digital presence.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    category: 'web',
-    links: { demo: '#', code: 'https://github.com/' },
+      'Platform e-commerce berbasis web dan aplikasi mobile. Dikerjakan secara tim.',
+    tags: ['Dart', 'Flutter'],
+    category: 'mobile',
+    featured: false,
+    contributions: [
+      'Mengembangkan fitur transaksi merchandise pada aplikasi mobile.',
+      'Mengintegrasikan aplikasi mobile dengan layanan backend bersama tim pengembangan.',
+      'Bekerja menggunakan pendekatan Agile.',
+    ],
+    links: { demo: null, code: null },
   },
   {
     id: 3,
-    title: 'ReuseMart — E-Commerce Platform',
-    meta: 'Academic Project · 2025 · Software Development Team',
+    title: 'Website Profil Perusahaan – Perusahaan Briket',
+    meta: 'Proyek Pribadi · 2026',
     description:
-      'E-commerce platform with website and mobile application. Developed the merchandise transaction feature end-to-end using Dart and Flutter.',
-    tags: ['Dart', 'Flutter'],
-    category: 'mobile',
-    links: { demo: '#', code: 'https://github.com/' },
-  },
-  {
-    id: 4,
-    title: 'Episentrum — Design Thinking Project',
-    meta: 'Academic Project · 2023 · UI/UX Designer',
-    description:
-      'High-fidelity prototype for the Episentrum application, designed with a user-oriented approach grounded in UI/UX principles.',
-    tags: ['UI/UX Design'],
-    category: 'design',
-    links: { demo: '#', code: 'https://github.com/' },
+      'Mengembangkan website profil perusahaan yang responsif untuk menampilkan produk dan informasi bisnis perusahaan briket.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    category: 'web',
+    featured: false,
+    links: { demo: null, code: null },
   },
 ]
 
@@ -49,7 +59,6 @@ const categories = [
   { value: 'all', labelKey: 'projects.all' },
   { value: 'web', labelKey: 'projects.web' },
   { value: 'mobile', labelKey: 'projects.mobile' },
-  { value: 'design', labelKey: 'projects.design' },
 ]
 
 export default function Projects() {
@@ -92,7 +101,7 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className="grid gap-0 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {filtered.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

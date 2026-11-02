@@ -62,11 +62,12 @@ export default function Navbar() {
           <img src="/logo.png" alt="Logo Andreas Kuncoro" className="h-8 w-8 object-contain" />
           <span className="font-serif text-xl font-bold text-black">
             <span className="text-[#004BBC]">A</span>ndreas
-            <span className="text-[#004BBC]">.</span>
+             <span className="text-[#004BBC]">K</span>uncoro 
+            <span className="text-[#004BBC]"> A.N.</span>
           </span>
         </a>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-1 lg:flex">
           {links.map((link) => (
             <a
               key={link.id}
@@ -79,11 +80,11 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex items-center gap-3 lg:hidden">
           <button
             onClick={() => setOpen(!open)}
             className="p-2 text-black transition-colors duration-500 hover:text-[#004BBC]"
-            aria-label="Toggle menu"
+            aria-label={open ? 'Tutup menu' : 'Buka menu'}
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -91,7 +92,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-black/10 bg-white px-8 py-4 md:hidden">
+        <div className="border-t border-black/10 bg-white px-8 py-4 lg:hidden">
           <div className="flex flex-col gap-1">
             {links.map((link) => (
               <a

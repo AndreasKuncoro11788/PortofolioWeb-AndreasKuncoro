@@ -1,13 +1,26 @@
 import { ArrowRight, Mail } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { GithubIcon, LinkedinIcon } from '../components/BrandIcons'
+import { GithubIcon, LinkedinIcon, WhatsappIcon } from '../components/BrandIcons'
 
 export default function Home() {
   const { t } = useTranslation()
 
   const socials = [
-    { icon: GithubIcon, href: 'https://github.com/', label: 'GitHub' },
-    { icon: LinkedinIcon, href: 'https://linkedin.com/', label: 'LinkedIn' },
+    {
+      icon: GithubIcon,
+      href: 'https://github.com/AndreasKuncoro11788',
+      label: 'GitHub',
+    },
+    {
+      icon: LinkedinIcon,
+      href: 'https://www.linkedin.com/in/andreas-kuncoro-adi-nugroho-6022552a2',
+      label: 'LinkedIn',
+    },
+    {
+      icon: WhatsappIcon,
+      href: 'https://wa.me/621384752007',
+      label: 'WhatsApp',
+    },
     { icon: Mail, href: 'mailto:andreaskuncoroadinugroho@gmail.com', label: 'Email' },
   ]
 
@@ -21,10 +34,16 @@ export default function Home() {
             {t('hero.greeting')}
           </p>
 
-          <h1 className="font-serif text-6xl font-bold leading-[0.9] tracking-tight text-black md:text-8xl lg:text-9xl">
-            Andreas
-            <br />
-            Kuncoro
+          <h1 className="font-serif font-bold leading-[0.9] tracking-tight text-black">
+            <span className="block text-6xl md:text-8xl lg:text-9xl">
+              Andreas
+            </span>
+            <span className="block text-6xl md:text-8xl lg:text-9xl">
+              Kuncoro
+            </span>
+            <span className="mt-2 block text-3xl md:text-4xl lg:text-5xl">
+              Adi Nugroho
+            </span>
           </h1>
 
           <p className="mt-6 max-w-md text-lg font-medium leading-relaxed text-[#004BBC]">
@@ -73,9 +92,9 @@ export default function Home() {
 
         <div className="flex items-end justify-start md:col-span-5 md:col-start-8">
           <div className="relative flex aspect-[3/4] w-full max-w-md items-center justify-center overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
-            <img src="/photo.jpg" alt="Andreas Kuncoro" className="h-full w-full object-cover object-top" />
+            <img src="/photo.jpg" alt="Andreas Kuncoro Adi Nugroho" className="h-full w-full object-cover object-top" />
             <div className="absolute -left-3 top-8 hidden border-l border-[#004BBC]/60 py-8 text-[10px] uppercase tracking-[0.3em] text-[#6B7280] md:block" style={{ writingMode: 'vertical-rl' }}>
-              Software Developer / System Analyst
+              {t('hero.imageLabel')}
             </div>
           </div>
         </div>

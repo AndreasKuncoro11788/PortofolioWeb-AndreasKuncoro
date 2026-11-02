@@ -96,6 +96,24 @@ export default function About() {
               </div>
             </div>
 
+            <div className="mt-12 flex items-center gap-4">
+              <a
+                href="https://github.com/AndreasKuncoro11788"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                className="text-[#6B7280] transition-colors duration-500 hover:text-[#004BBC]"
+              >
+                <GithubIcon className="h-5 w-5" />
+              </a>
+              <a
+                href="mailto:andreaskuncoroadinugroho@gmail.com"
+                aria-label="Email"
+                className="text-[#6B7280] transition-colors duration-500 hover:text-[#004BBC]"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
+            </div>
           </div>
 
           <div className="lg:col-span-4 lg:col-start-9">

@@ -50,6 +50,28 @@
     pointer-events: none;
     z-index: 0;
   }
+
+  .animate-scroll-cue {
+    animation: scrollCue 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes scrollCue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-cue {
+    animation: none;
+  }
 }
 
 @keyframes fadeIn {

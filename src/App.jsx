@@ -1,5 +1,6 @@
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
+import ScrollIndicator from './components/ScrollIndicator'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Education from './pages/Education'
@@ -27,6 +28,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <ScrollIndicator />
     </div>
   )
 }

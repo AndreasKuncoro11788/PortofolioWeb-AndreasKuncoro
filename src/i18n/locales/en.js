@@ -15,6 +15,8 @@ export default {
       'Informatics graduate from Universitas Atma Jaya Yogyakarta. I design and build functional, responsive web applications centered on user needs.',
     ctaProjects: 'View Projects',
     ctaContact: 'Contact Me',
+    viewCv: 'View CV',
+    viewCvLabel: 'View Andreas Kuncoro\'s CV (PDF, new tab)',
     imageLabel: 'Freelance Web Developer',
   },
   about: {
@@ -118,6 +120,8 @@ export default {
     linkedin: 'LinkedIn',
     github: 'GitHub',
     sendEmail: 'Send Email',
+    viewCv: 'View CV',
+    viewCvLabel: 'View Andreas Kuncoro\'s CV (PDF, new tab)',
   },
   footer: {
     rights: 'All rights reserved.',

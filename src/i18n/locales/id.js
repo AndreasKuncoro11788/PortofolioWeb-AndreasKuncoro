@@ -15,6 +15,8 @@ export default {
       'Lulusan S1 Informatika Universitas Atma Jaya Yogyakarta. Merancang dan membangun aplikasi web yang fungsional, responsif, dan berorientasi pada kebutuhan pengguna.',
     ctaProjects: 'Lihat Proyek',
     ctaContact: 'Hubungi Saya',
+    viewCv: 'Lihat CV',
+    viewCvLabel: 'Lihat CV Andreas Kuncoro (PDF, tab baru)',
     imageLabel: 'Freelance Web Developer',
   },
   about: {
@@ -118,6 +120,8 @@ export default {
     linkedin: 'LinkedIn',
     github: 'GitHub',
     sendEmail: 'Kirim Email',
+    viewCv: 'Lihat CV',
+    viewCvLabel: 'Lihat CV Andreas Kuncoro (PDF, tab baru)',
   },
   footer: {
     rights: 'Semua hak dilindungi.',

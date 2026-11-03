@@ -1,6 +1,7 @@
-import { ArrowRight, Mail } from 'lucide-react'
+import { ArrowRight, FileText, Mail } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { GithubIcon, LinkedinIcon, WhatsappIcon } from '../components/BrandIcons'
+import { CV_URL } from '../constants'
 
 export default function Home() {
   const { t } = useTranslation()
@@ -64,6 +65,16 @@ export default function Home() {
                 className="inline-flex h-12 items-center border border-line px-7 text-[11px] font-medium uppercase tracking-[0.18em] text-muted transition-colors duration-300 hover:border-ink hover:text-ink"
               >
                 {t('hero.ctaContact')}
+              </a>
+              <a
+                href={CV_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t('hero.viewCvLabel')}
+                className="group inline-flex h-12 items-center gap-3 border border-line px-7 text-[11px] font-medium uppercase tracking-[0.18em] text-muted transition-colors duration-300 hover:border-ink hover:text-ink"
+              >
+                {t('hero.viewCv')}
+                <FileText className="h-3.5 w-3.5" />
               </a>
             </div>
 

@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import ThemeToggle from './ThemeToggle'
-import LanguageToggle from './LanguageToggle'
 
-const NAV_IDS = ['home', 'about', 'projects', 'contact']
+const NAV_IDS = ['home', 'about', 'education', 'projects', 'organization', 'contact']
 
 export default function Navbar() {
   const { t } = useTranslation()
@@ -14,13 +12,15 @@ export default function Navbar() {
   const links = [
     { id: 'home', label: t('nav.home') },
     { id: 'about', label: t('nav.about') },
+    { id: 'education', label: t('nav.education') },
     { id: 'projects', label: t('nav.projects') },
+    { id: 'organization', label: t('nav.organization') },
     { id: 'contact', label: t('nav.contact') },
   ]
 
   useEffect(() => {
     const handleScroll = () => {
-      const offset = window.scrollY + 100
+      const offset = window.scrollY + 120
       let current = NAV_IDS[0]
       for (const id of NAV_IDS) {
         const el = document.getElementById(id)
@@ -35,76 +35,109 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const linkClass = (id) =>
-    `px-3 py-2 rounded-md text-sm font-medium transition ${
-      active === id
-        ? 'text-blue-600 dark:text-blue-400'
-        : 'text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400'
-    }`
+  useEffect(() => {
+    const handleKey = (event) => {
+      if (event.key === 'Escape') setOpen(false)
+    }
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setOpen(false)
+    }
+    window.addEventListener('keydown', handleKey)
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('keydown', handleKey)
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
-  const handleClick = (e, id) => {
-    e.preventDefault()
+  const handleClick = (event, id) => {
+    event.preventDefault()
     const el = document.getElementById(id)
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
+      const header = document.querySelector('header')
+      const offset = header ? header.offsetHeight : 72
+      const top = el.getBoundingClientRect().top + window.scrollY - offset
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' })
     }
     setOpen(false)
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur dark:border-gray-800 dark:bg-gray-950/80">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+    <header className="sticky top-0 z-40 border-b border-line bg-paper">
+      <nav
+        className="shell flex h-[72px] items-center justify-between"
+        aria-label="Navigasi utama"
+      >
         <a
           href="#home"
-          onClick={(e) => handleClick(e, 'home')}
-          className="text-xl font-bold text-gray-900 dark:text-white"
+          onClick={(event) => handleClick(event, 'home')}
+          className="flex items-center gap-2.5"
+          aria-label="Andreas Kuncoro — Beranda"
         >
-          <span className="text-blue-600 dark:text-blue-400">A</span>ndreas
-          <span className="text-blue-600 dark:text-blue-400">.</span>
+          <img src="/logo.png" alt="" className="h-7 w-7 object-contain" />
+          <span className="font-serif text-[17px] font-medium tracking-[-0.01em] text-ink">
+            Andreas Kuncoro<span className="text-accent">.</span>
+          </span>
         </a>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-8 lg:flex">
           {links.map((link) => (
             <a
               key={link.id}
               href={`#${link.id}`}
-              onClick={(e) => handleClick(e, link.id)}
-              className={linkClass(link.id)}
+              onClick={(event) => handleClick(event, link.id)}
+              aria-current={active === link.id ? 'true' : undefined}
+              className={`relative py-1 text-[12px] font-medium uppercase tracking-[0.18em] transition-colors duration-300 ${
+                active === link.id ? 'text-accent' : 'text-muted hover:text-ink'
+              }`}
             >
               {link.label}
+              <span
+                aria-hidden="true"
+                className={`absolute -bottom-0.5 left-0 h-px w-full origin-left bg-accent transition-transform duration-300 ${
+                  active === link.id ? 'scale-x-100' : 'scale-x-0'
+                }`}
+              />
             </a>
           ))}
         </div>
 
-        <div className="hidden items-center gap-2 md:flex">
-          <LanguageToggle />
-          <ThemeToggle />
-        </div>
-
-        <div className="flex items-center gap-2 md:hidden">
-          <LanguageToggle />
-          <ThemeToggle />
-          <button
-            onClick={() => setOpen(!open)}
-            className="rounded-lg p-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
-            aria-label="Toggle menu"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          className="flex h-10 w-10 items-center justify-center text-ink transition-colors duration-300 hover:text-accent lg:hidden"
+          aria-label={open ? 'Tutup menu' : 'Buka menu'}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </nav>
 
       {open && (
-        <div className="border-t border-gray-200 bg-white px-4 py-3 dark:border-gray-800 dark:bg-gray-950 md:hidden">
-          <div className="flex flex-col gap-1">
-            {links.map((link) => (
+        <div
+          id="mobile-menu"
+          className="animate-fade-in border-t border-line bg-paper lg:hidden"
+        >
+          <div className="shell py-1">
+            {links.map((link, index) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
-                onClick={(e) => handleClick(e, link.id)}
-                className={linkClass(link.id)}
+                onClick={(event) => handleClick(event, link.id)}
+                aria-current={active === link.id ? 'true' : undefined}
+                className={`flex items-center justify-between border-b border-line py-4 text-[12px] uppercase tracking-[0.2em] transition-colors last:border-b-0 ${
+                  active === link.id ? 'text-accent' : 'text-ink hover:text-accent'
+                }`}
               >
                 {link.label}
+                <span
+                  aria-hidden="true"
+                  className="font-serif text-[11px] tracking-normal text-muted"
+                >
+                  {String(index + 1).padStart(2, '0')}
+                </span>
               </a>
             ))}
           </div>

@@ -1,129 +1,137 @@
-import { Download, Mail } from 'lucide-react'
-import { GithubIcon, GitlabIcon } from '../components/BrandIcons'
+import { Mail } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import { GithubIcon } from '../components/BrandIcons'
+import SectionHeader from '../components/SectionHeader'
 
 export default function About() {
-  const skills = [
-    { name: 'React', level: '90%' },
-    { name: 'JavaScript', level: '85%' },
-    { name: 'TypeScript', level: '75%' },
-    { name: 'Tailwind CSS', level: '90%' },
-    { name: 'Node.js', level: '70%' },
-    { name: 'UI/UX Design', level: '80%' },
+  const { t } = useTranslation()
+
+  const skillCategories = [
+    {
+      key: 'languages',
+      label: t('about.skillCategories.languages'),
+      items: t('skills.languages', { returnObjects: true }),
+    },
+    {
+      key: 'frameworks',
+      label: t('about.skillCategories.frameworks'),
+      items: t('skills.frameworks', { returnObjects: true }),
+    },
+    {
+      key: 'api',
+      label: t('about.skillCategories.api'),
+      items: t('skills.api', { returnObjects: true }),
+    },
+    {
+      key: 'tools',
+      label: t('about.skillCategories.tools'),
+      items: t('skills.tools', { returnObjects: true }),
+    },
   ]
 
+  const experiences = t('about.experiences', { returnObjects: true })
+
   return (
-    <section id="about" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6">
-      <div className="mb-12 text-center">
-        <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-          Tentang <span className="text-blue-600 dark:text-blue-400">Saya</span>
-        </h1>
-        <div className="mx-auto mt-4 h-1 w-20 rounded bg-blue-600" />
-      </div>
+    <section id="about" className="relative scroll-mt-24">
+      <div className="shell section">
+        <SectionHeader
+          index="02"
+          overline={t('about.overline')}
+          title={t('about.title')}
+        />
 
-      <div className="grid gap-12 lg:grid-cols-2">
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-            Frontend Developer
-          </h2>
-          <p className="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-            Saya adalah pengembang frontend yang bersemangat dalam membangun web
-            yang bersih dan fungsional. Dengan pengalaman membangun berbagai
-            aplikasi web, saya selalu berusaha menggabungkan estetika dan
-            fungsionalitas.
-          </p>
-          <p className="mt-4 leading-relaxed text-gray-600 dark:text-gray-300">
-            Saya percaya bahwa desain yang baik dan kode yang terstruktur adalah
-            kunci dari produk digital yang sukses. Saya selalu siap belajar hal
-            baru dan menghadapi tantangan.
-          </p>
+        <div className="mt-[clamp(3rem,5vw,5rem)] grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-7">
+            <h3 className="display-sub text-ink">{t('about.subHeading')}</h3>
 
-          <h3 className="mt-8 text-xl font-bold text-gray-900 dark:text-white">
-            Pengalaman
-          </h3>
-          <div className="mt-4 space-y-4">
-            <div className="rounded-xl border border-gray-200 p-4 dark:border-gray-700">
-              <h4 className="font-semibold text-gray-900 dark:text-white">
-                Frontend Developer — Freelance
-              </h4>
-              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                Membangun website responsif untuk berbagai klien.
+            <div className="body-copy mt-6 max-w-[62ch] space-y-5 text-muted">
+              <p>
+                <span className="float-left mr-3 mt-1 font-serif text-[4.5rem] font-medium leading-[0.75] text-ink">
+                  {t('about.p1').charAt(0)}
+                </span>
+                {t('about.p1').slice(1)}
               </p>
+              <p>{t('about.p2')}</p>
             </div>
-            <div className="rounded-xl border border-gray-200 p-4 dark:border-gray-700">
-              <h4 className="font-semibold text-gray-900 dark:text-white">
-                Web Design — Personal Project
-              </h4>
-              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                Merancang UI/UX yang modern dan user-friendly.
-              </p>
-            </div>
-          </div>
 
-          <div className="mt-8 flex flex-wrap gap-4">
-            <button
-              type="button"
-              className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700"
-              onClick={() =>
-                window.open('/CV-AndreasKuncoro.pdf', '_blank')
-              }
-            >
-              <Download className="h-4 w-4" />
-              Unduh CV
-            </button>
-            <div className="flex items-center gap-3">
+            <div className="mt-14">
+              <p className="eyebrow">{t('about.expTitle')}</p>
+              <div className="mt-4">
+                {experiences.map((exp) => (
+                  <article key={exp.title} className="border-t border-line py-7">
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-12">
+                      <div className="sm:col-span-3">
+                        <p className="text-[10px] uppercase leading-relaxed tracking-[0.16em] text-muted">
+                          {exp.period}
+                        </p>
+                      </div>
+                      <div className="sm:col-span-9">
+                        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                          <h4 className="font-serif text-[1.35rem] font-medium leading-tight text-ink">
+                            {exp.title}
+                          </h4>
+                          <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
+                            {exp.role}
+                          </span>
+                        </div>
+                        <ul className="mt-4 space-y-2.5">
+                          {exp.points.map((point) => (
+                            <li
+                              key={point}
+                              className="flex gap-3 text-[14px] leading-relaxed text-muted"
+                            >
+                              <span
+                                aria-hidden="true"
+                                className="mt-[0.7em] h-px w-4 flex-none bg-accent"
+                              />
+                              <span>{point}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-10 flex items-center gap-6 border-t border-line pt-6">
               <a
-                href="https://github.com/"
+                href="https://github.com/AndreasKuncoro11788"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
-                className="rounded-lg p-2 text-gray-500 transition hover:text-blue-600 dark:text-gray-400"
+                className="text-muted transition-colors duration-300 hover:text-accent"
               >
-                <GithubIcon className="h-6 w-6" />
+                <GithubIcon className="h-4 w-4" />
               </a>
               <a
-                href="https://gitlab.com/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitLab"
-                className="rounded-lg p-2 text-gray-500 transition hover:text-blue-600 dark:text-gray-400"
-              >
-                <GitlabIcon className="h-6 w-6" />
-              </a>
-              <a
-                href="mailto:andreas@email.com"
+                href="mailto:andreaskuncoroadinugroho@gmail.com"
                 aria-label="Email"
-                className="rounded-lg p-2 text-gray-500 transition hover:text-blue-600 dark:text-gray-400"
+                className="text-muted transition-colors duration-300 hover:text-accent"
               >
-                <Mail className="h-6 w-6" />
+                <Mail className="h-4 w-4" />
               </a>
             </div>
           </div>
-        </div>
 
-        <div>
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-            Keterampilan & Teknologi
-          </h3>
-          <div className="mt-6 space-y-5">
-            {skills.map((skill) => (
-              <div key={skill.name}>
-                <div className="mb-1 flex justify-between text-sm font-medium">
-                  <span className="text-gray-700 dark:text-gray-200">
-                    {skill.name}
-                  </span>
-                  <span className="text-gray-500 dark:text-gray-400">
-                    {skill.level}
-                  </span>
-                </div>
-                <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
-                  <div
-                    className="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400"
-                    style={{ width: skill.level }}
-                  />
-                </div>
+          <aside className="lg:col-span-4 lg:col-start-9">
+            <div className="lg:sticky lg:top-28">
+              <p className="eyebrow">{t('about.skillsTitle')}</p>
+              <div className="mt-5">
+                {skillCategories.map((category) => (
+                  <div key={category.key} className="border-t border-line py-5">
+                    <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-ink">
+                      {category.label}
+                    </p>
+                    <p className="mt-3 text-[13px] leading-relaxed text-muted">
+                      {category.items.join(' · ')}
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>

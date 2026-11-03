@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ProjectCard from '../components/ProjectCard'
+import SectionHeader from '../components/SectionHeader'
 
 const projects = [
   {
@@ -68,42 +69,50 @@ export default function Projects() {
   const filtered =
     active === 'all'
       ? projects
-      : projects.filter((p) => p.category === active)
+      : projects.filter((project) => project.category === active)
 
   return (
-    <section id="projects" className="relative scroll-mt-20">
-      <div className="mx-auto max-w-[1600px] px-8 py-24 md:px-16 md:py-32">
-        <div className="mb-16 border-t border-black pt-8">
-          <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-[#6B7280]">
-            {t('projects.subtitle')}
-          </p>
-          <h2 className="font-serif text-5xl font-bold leading-[0.9] tracking-tight text-black md:text-7xl">
-            {t('projects.title')}
-          </h2>
+    <section id="projects" className="relative scroll-mt-24">
+      <div className="shell section">
+        <SectionHeader
+          index="04"
+          overline={t('projects.subtitle')}
+          title={t('projects.title')}
+        />
+
+        <div className="mt-[clamp(2.5rem,4vw,4rem)] flex flex-wrap items-center justify-between gap-4 border-b border-line pb-3">
+          <div className="flex flex-wrap gap-7">
+            {categories.map((category) => (
+              <button
+                key={category.value}
+                type="button"
+                onClick={() => setActive(category.value)}
+                aria-pressed={active === category.value}
+                className={`relative pb-2 text-[11px] font-medium uppercase tracking-[0.2em] transition-colors duration-300 ${
+                  active === category.value
+                    ? 'text-accent'
+                    : 'text-muted hover:text-ink'
+                }`}
+              >
+                {t(category.labelKey)}
+                <span
+                  aria-hidden="true"
+                  className={`absolute -bottom-3 left-0 h-px w-full origin-left bg-accent transition-transform duration-300 ${
+                    active === category.value ? 'scale-x-100' : 'scale-x-0'
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+
+          <span className="eyebrow text-[10px]">
+            {String(filtered.length).padStart(2, '0')} {t('nav.projects')}
+          </span>
         </div>
 
-        <div className="mb-16 flex flex-wrap gap-6">
-          {categories.map((cat) => (
-            <button
-              key={cat.value}
-              onClick={() => setActive(cat.value)}
-              className={`text-xs font-medium uppercase tracking-[0.25em] transition-colors duration-500 ${
-                active === cat.value
-                  ? 'text-[#004BBC]'
-                  : 'text-[#6B7280] hover:text-black'
-              }`}
-            >
-              {t(cat.labelKey)}
-              {active === cat.value && (
-                <div className="mt-1 h-px bg-[#004BBC]" />
-              )}
-            </button>
-          ))}
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {filtered.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+        <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3">
+          {filtered.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
       </div>

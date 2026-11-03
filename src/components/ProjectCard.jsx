@@ -1,57 +1,69 @@
-import { ExternalLink, Folder } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { GithubIcon } from './BrandIcons'
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, index = 0 }) {
   const { t } = useTranslation()
 
   return (
-    <div className="group flex h-full flex-col border border-black/10 bg-white transition-all duration-500 hover:border-[#004BBC]/50 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
-      <div className="relative flex aspect-[4/5] items-center justify-center border-b border-black/10 bg-gradient-to-br from-[#E5E7EB] to-white grayscale transition-all duration-[1500ms] group-hover:grayscale-0">
-        <Folder className="h-16 w-16 text-black/20 transition-all duration-[1500ms] group-hover:text-[#004BBC]/40" />
+    <article className="group flex h-full flex-col border border-line bg-paper p-5 transition-colors duration-300 hover:border-ink/30">
+      <div className="relative flex aspect-[4/3] items-end justify-between overflow-hidden bg-surface p-5">
+        <span
+          aria-hidden="true"
+          className="font-serif text-[clamp(3rem,5vw,4.5rem)] font-medium leading-none text-ink/10"
+        >
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <span className="eyebrow text-[10px]">
+          {t(`projects.${project.category}`)}
+        </span>
+
         {project.featured && (
-          <span className="absolute left-4 top-4 bg-[#004BBC] px-3 py-1 text-[9px] font-medium uppercase tracking-[0.2em] text-white">
+          <span className="absolute left-5 top-4 flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
+            <span aria-hidden="true" className="h-1.5 w-1.5 bg-accent" />
             {t('projects.featured')}
           </span>
         )}
+
         {project.links?.demo && (
           <a
             href={project.links.demo}
             target="_blank"
             rel="noreferrer"
-            className="absolute right-4 top-4 border border-black/10 bg-white/90 p-2 text-black transition-all duration-500 hover:border-[#004BBC] hover:text-[#004BBC]"
+            className="absolute right-5 top-4 border border-line bg-paper p-2 text-ink transition-colors duration-300 hover:border-accent hover:text-accent"
             aria-label={t('projects.viewDemo')}
           >
-            <ExternalLink className="h-4 w-4" />
+            <ExternalLink className="h-3.5 w-3.5" />
           </a>
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-8">
-        {project.meta && (
-          <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.25em] text-[#004BBC]">
-            {project.meta}
-          </p>
-        )}
-        <h3 className="font-serif text-xl font-bold text-black">
+      <div className="flex flex-1 flex-col pt-5">
+        {project.meta && <p className="eyebrow text-[10px]">{project.meta}</p>}
+
+        <h3 className="mt-3 font-serif text-[1.4rem] font-medium leading-[1.15] tracking-[-0.01em] text-ink">
           {project.title}
         </h3>
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-[#6B7280]">
+
+        <p className="mt-3 text-[14px] leading-relaxed text-muted">
           {project.description}
         </p>
 
         {project.features?.length > 0 && (
           <div className="mt-5">
-            <p className="mb-2 text-[9px] font-medium uppercase tracking-[0.25em] text-[#6B7280]">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted">
               {t('projects.features')}
             </p>
-            <div className="flex flex-wrap gap-x-4 gap-y-1.5">
+            <div className="mt-2 grid gap-1.5">
               {project.features.map((feature) => (
                 <span
                   key={feature}
-                  className="flex items-center gap-2 text-[11px] leading-relaxed text-[#6B7280]"
+                  className="flex gap-2.5 text-[11px] leading-relaxed text-muted"
                 >
-                  <span className="h-1 w-1 flex-shrink-0 bg-[#004BBC]" />
+                  <span
+                    aria-hidden="true"
+                    className="mt-[0.65em] h-px w-3 flex-none bg-accent"
+                  />
                   {feature}
                 </span>
               ))}
@@ -61,16 +73,19 @@ export default function ProjectCard({ project }) {
 
         {project.contributions?.length > 0 && (
           <div className="mt-5">
-            <p className="mb-2 text-[9px] font-medium uppercase tracking-[0.25em] text-[#6B7280]">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted">
               {t('projects.contributions')}
             </p>
-            <ul className="space-y-1.5">
+            <ul className="mt-2 space-y-1.5">
               {project.contributions.map((item) => (
                 <li
                   key={item}
-                  className="flex gap-2 text-[11px] leading-relaxed text-[#6B7280]"
+                  className="flex gap-2.5 text-[11px] leading-relaxed text-muted"
                 >
-                  <span className="mt-1.5 h-1 w-1 flex-shrink-0 bg-[#004BBC]" />
+                  <span
+                    aria-hidden="true"
+                    className="mt-[0.65em] h-px w-3 flex-none bg-accent"
+                  />
                   <span>{item}</span>
                 </li>
               ))}
@@ -79,17 +94,17 @@ export default function ProjectCard({ project }) {
         )}
 
         {project.achievements?.length > 0 && (
-          <div className="mt-5 border-t border-black/10 pt-4">
-            <p className="mb-3 text-[9px] font-medium uppercase tracking-[0.25em] text-[#004BBC]">
+          <div className="mt-5 border-t border-line pt-4">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
               {t('projects.achievements')}
             </p>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="mt-3 grid grid-cols-3 gap-3">
               {project.achievements.map((item) => (
                 <div key={item.label}>
-                  <p className="font-serif text-xl font-bold leading-none text-black">
+                  <p className="font-serif text-[1.4rem] font-medium leading-none text-ink">
                     {item.value}
                   </p>
-                  <p className="mt-1 text-[9px] uppercase leading-tight tracking-[0.12em] text-[#6B7280]">
+                  <p className="mt-1.5 text-[10px] uppercase leading-tight tracking-[0.1em] text-muted">
                     {item.label}
                   </p>
                 </div>
@@ -98,31 +113,31 @@ export default function ProjectCard({ project }) {
           </div>
         )}
 
-        <div className="mt-5 flex flex-wrap gap-3">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#6B7280]"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+        <div className="mt-auto pt-6">
+          <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-line pt-4">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-[10px] font-medium uppercase tracking-[0.16em] text-muted"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
 
-        {project.links?.code && (
-          <div className="mt-5 flex items-center gap-3">
+          {project.links?.code && (
             <a
               href={project.links.code}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 border border-black/20 px-4 py-2 text-[10px] font-medium uppercase tracking-[0.2em] text-black transition-all duration-500 hover:border-black hover:bg-black hover:text-white"
+              className="mt-4 inline-flex items-center gap-2 border border-line px-4 py-2 text-[10px] font-medium uppercase tracking-[0.18em] text-ink transition-colors duration-300 hover:border-accent hover:text-accent"
             >
               <GithubIcon className="h-3.5 w-3.5" />
               {t('projects.viewCode')}
             </a>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </article>
   )
 }

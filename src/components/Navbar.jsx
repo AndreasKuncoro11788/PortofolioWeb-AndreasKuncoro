@@ -20,7 +20,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const offset = window.scrollY + 100
+      const offset = window.scrollY + 120
       let current = NAV_IDS[0]
       for (const id of NAV_IDS) {
         const el = document.getElementById(id)
@@ -35,73 +35,109 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const linkClass = (id) =>
-    `px-3 py-2 text-xs uppercase tracking-[0.25em] font-medium transition-colors duration-500 ${
-      active === id
-        ? 'text-[#004BBC]'
-        : 'text-black hover:text-[#004BBC]'
-    }`
+  useEffect(() => {
+    const handleKey = (event) => {
+      if (event.key === 'Escape') setOpen(false)
+    }
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setOpen(false)
+    }
+    window.addEventListener('keydown', handleKey)
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('keydown', handleKey)
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
-  const handleClick = (e, id) => {
-    e.preventDefault()
+  const handleClick = (event, id) => {
+    event.preventDefault()
     const el = document.getElementById(id)
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
+      const header = document.querySelector('header')
+      const offset = header ? header.offsetHeight : 72
+      const top = el.getBoundingClientRect().top + window.scrollY - offset
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' })
     }
     setOpen(false)
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-black/10 bg-white/90 backdrop-blur">
-      <nav className="mx-auto flex max-w-[1600px] items-center justify-between px-8 py-4 md:px-16">
+    <header className="sticky top-0 z-40 border-b border-line bg-paper">
+      <nav
+        className="shell flex h-[72px] items-center justify-between"
+        aria-label="Navigasi utama"
+      >
         <a
           href="#home"
-          onClick={(e) => handleClick(e, 'home')}
-          className="flex items-center gap-3"
+          onClick={(event) => handleClick(event, 'home')}
+          className="flex items-center gap-2.5"
+          aria-label="Andreas Kuncoro — Beranda"
         >
-          <img src="/logo.png" alt="Logo Andreas Kuncoro" className="h-8 w-8 object-contain" />
-          <span className="font-serif text-xl font-bold text-black">
-            <span className="text-[#004BBC]">A</span>ndreas
-             <span className="text-[#004BBC]">K</span>uncoro 
-            <span className="text-[#004BBC]"> A.N.</span>
+          <img src="/logo.png" alt="" className="h-7 w-7 object-contain" />
+          <span className="font-serif text-[17px] font-medium tracking-[-0.01em] text-ink">
+            Andreas Kuncoro<span className="text-accent">.</span>
           </span>
         </a>
 
-        <div className="hidden items-center gap-1 lg:flex">
+        <div className="hidden items-center gap-8 lg:flex">
           {links.map((link) => (
             <a
               key={link.id}
               href={`#${link.id}`}
-              onClick={(e) => handleClick(e, link.id)}
-              className={linkClass(link.id)}
+              onClick={(event) => handleClick(event, link.id)}
+              aria-current={active === link.id ? 'true' : undefined}
+              className={`relative py-1 text-[12px] font-medium uppercase tracking-[0.18em] transition-colors duration-300 ${
+                active === link.id ? 'text-accent' : 'text-muted hover:text-ink'
+              }`}
             >
               {link.label}
+              <span
+                aria-hidden="true"
+                className={`absolute -bottom-0.5 left-0 h-px w-full origin-left bg-accent transition-transform duration-300 ${
+                  active === link.id ? 'scale-x-100' : 'scale-x-0'
+                }`}
+              />
             </a>
           ))}
         </div>
 
-        <div className="flex items-center gap-3 lg:hidden">
-          <button
-            onClick={() => setOpen(!open)}
-            className="p-2 text-black transition-colors duration-500 hover:text-[#004BBC]"
-            aria-label={open ? 'Tutup menu' : 'Buka menu'}
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          className="flex h-10 w-10 items-center justify-center text-ink transition-colors duration-300 hover:text-accent lg:hidden"
+          aria-label={open ? 'Tutup menu' : 'Buka menu'}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </nav>
 
       {open && (
-        <div className="border-t border-black/10 bg-white px-8 py-4 lg:hidden">
-          <div className="flex flex-col gap-1">
-            {links.map((link) => (
+        <div
+          id="mobile-menu"
+          className="animate-fade-in border-t border-line bg-paper lg:hidden"
+        >
+          <div className="shell py-1">
+            {links.map((link, index) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
-                onClick={(e) => handleClick(e, link.id)}
-                className={linkClass(link.id)}
+                onClick={(event) => handleClick(event, link.id)}
+                aria-current={active === link.id ? 'true' : undefined}
+                className={`flex items-center justify-between border-b border-line py-4 text-[12px] uppercase tracking-[0.2em] transition-colors last:border-b-0 ${
+                  active === link.id ? 'text-accent' : 'text-ink hover:text-accent'
+                }`}
               >
                 {link.label}
+                <span
+                  aria-hidden="true"
+                  className="font-serif text-[11px] tracking-normal text-muted"
+                >
+                  {String(index + 1).padStart(2, '0')}
+                </span>
               </a>
             ))}
           </div>

@@ -117,8 +117,10 @@ export default {
     whatsapp: 'WhatsApp',
     linkedin: 'LinkedIn',
     github: 'GitHub',
+    sendEmail: 'Kirim Email',
   },
   footer: {
     rights: 'Semua hak dilindungi.',
+    backToTop: 'Kembali ke atas',
   },
 }

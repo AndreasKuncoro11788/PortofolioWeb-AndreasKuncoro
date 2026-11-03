@@ -13,6 +13,7 @@ const projects = [
     tags: ['Laravel', 'React', 'Tailwind CSS', 'MySQL'],
     category: 'web',
     featured: true,
+    image: '/projects/sibesty.png',
     achievements: [
       { value: '104', label: 'Skenario pengujian berhasil' },
       { value: '27', label: 'Responden usability' },
@@ -36,6 +37,7 @@ const projects = [
     tags: ['Dart', 'Flutter'],
     category: 'mobile',
     featured: false,
+    image: '/projects/reusemart-v2.png',
     contributions: [
       'Mengembangkan fitur transaksi merchandise pada aplikasi mobile.',
       'Mengintegrasikan aplikasi mobile dengan layanan backend bersama tim pengembangan.',
@@ -52,6 +54,7 @@ const projects = [
     tags: ['HTML', 'CSS', 'JavaScript'],
     category: 'web',
     featured: false,
+    image: '/projects/compro-briket-v2.png',
     links: { demo: null, code: null },
   },
 ]

@@ -7,30 +7,49 @@ export default function ProjectCard({ project, index = 0 }) {
 
   return (
     <article className="group flex h-full flex-col border border-line bg-paper p-5 transition-colors duration-300 hover:border-ink/30">
-      <div className="relative flex aspect-[4/3] items-end justify-between overflow-hidden bg-surface p-5">
-        <span
-          aria-hidden="true"
-          className="font-serif text-[clamp(3rem,5vw,4.5rem)] font-medium leading-none text-ink/10"
-        >
-          {String(index + 1).padStart(2, '0')}
-        </span>
-        <span className="eyebrow text-[10px]">
-          {t(`projects.${project.category}`)}
-        </span>
+      <div className="relative overflow-hidden bg-white">
+        <div className="flex aspect-[4/3] items-center justify-center p-[clamp(1.5rem,3vw,2.25rem)]">
+          {project.image ? (
+            <img
+              src={project.image}
+              alt={`Logo proyek ${project.title}`}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-contain"
+            />
+          ) : (
+            <span
+              aria-hidden="true"
+              className="font-serif text-[clamp(3rem,5vw,4.5rem)] font-medium leading-none text-ink/10"
+            >
+              {String(index + 1).padStart(2, '0')}
+            </span>
+          )}
+        </div>
 
-        {project.featured && (
-          <span className="absolute left-5 top-4 flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
-            <span aria-hidden="true" className="h-1.5 w-1.5 bg-accent" />
-            {t('projects.featured')}
+        <div className="flex items-center justify-between gap-4 border-t border-line px-4 py-3">
+          <span className="eyebrow text-[10px]">
+            {String(index + 1).padStart(2, '0')}
+            <span aria-hidden="true" className="mx-2 text-ink/20">
+              /
+            </span>
+            {t(`projects.${project.category}`)}
           </span>
-        )}
+
+          {project.featured && (
+            <span className="flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
+              <span aria-hidden="true" className="h-1.5 w-1.5 bg-accent" />
+              {t('projects.featured')}
+            </span>
+          )}
+        </div>
 
         {project.links?.demo && (
           <a
             href={project.links.demo}
             target="_blank"
             rel="noreferrer"
-            className="absolute right-5 top-4 border border-line bg-paper p-2 text-ink transition-colors duration-300 hover:border-accent hover:text-accent"
+            className="absolute right-4 top-4 border border-line bg-white p-2 text-ink transition-colors duration-300 hover:border-accent hover:text-accent"
             aria-label={t('projects.viewDemo')}
           >
             <ExternalLink className="h-3.5 w-3.5" />
